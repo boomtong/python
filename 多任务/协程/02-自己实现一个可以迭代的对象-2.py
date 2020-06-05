@@ -1,11 +1,8 @@
 import collections
-from collections import Iterable
-from collections import Iterator
+from collections.abc import Iterable
+from collections.abc import Iterator
+import time
 
-# try:
-#     collectionsABC = collections.abc
-# except AttributeError:
-#     collectionsABC = collections
 
 class Classmate(object):
     def __init__(self):
@@ -27,7 +24,12 @@ class ClassIterator(object):
         pass
 
     def __next__(self):
-        return self.obj.names[0]
+        if self.current_num < len(self.obj.names):
+            ret = self.obj.names[self.current_num]
+            self.current_num += 1
+            return ret
+        else:
+            raise StopIteration
 
 
 classmate = Classmate()
@@ -42,3 +44,4 @@ classmate.add("张三")
 
 for name in classmate:
     print(name)
+    time.sleep(1)
