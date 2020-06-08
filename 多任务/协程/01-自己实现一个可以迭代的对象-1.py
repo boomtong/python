@@ -26,6 +26,7 @@ class ClassIterator(object):
     def __iter__(self):
         pass
 
+
     def __next__(self):
         return self.obj.names[0]
 
